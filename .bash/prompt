@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+################################################################################
+# Bash prompt configuration
+################################################################################
+
+get_title () {
+    echo "\[\033]0;\u@\h:\w\007\]"
+}
+
+get_prompt () {
+    local colour_red='\[\033[1;31m\]'
+    local colour_green='\[\033[1;32m\]'
+    local colour_yellow='\[\033[1;33m\]'
+    local colour_blue='\[\033[1;34m\]'
+    local colour_clear='\[\033[0m\]'
+
+    local branch=""
+    if type __git_ps1 > /dev/null 2>&1; then
+        # Quote the command to print it into the prompt instead of executing
+        # and using the return value in the prompt
+        branch='$(__git_ps1 "%s")'
+    fi
+
+    echo "$colour_green\u@\h $colour_blue\w $colour_yellow$branch$colour_clear\n> "
+}
+
+export PS1="$(get_title)$(get_prompt)"
