@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+#
+# Check for forbidden patterns in the changes being committed and prompt the
+# user to confirm the offending changes.
+#
+
+FORBIDDEN_REGEX="(dev_debug|var_dump|print_r|TODO|FIXME|>>>>>>|<<<<<<|======)"
+
+RESULT=$(git diff --cached --diff-filter=ACMR -G $FORBIDDEN_REGEX)
+
+# Allows us to read user input below, assigns stdin to keyboard
+exec < /dev/tty
+
+if [ ! -z "$RESULT" ]; then
+    echo "Forbidden patterns found in the following changes:"
+    echo "=============================="
+    echo "$RESULT"
+    echo "=============================="
+    read -r -n1 -p"Are you sure you want to commit [y/N]? " YN
+    echo
+    case $YN in
+        [Yy]) exit 0;;
+        *) echo "Aborting commit due to the presence of forbidden changes."; exit 1;;
+    esac
+fi
+
+exit 0
