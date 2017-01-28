@@ -12,6 +12,7 @@ get_prompt () {
     local colour_green='\[\033[1;32m\]'
     local colour_yellow='\[\033[1;33m\]'
     local colour_blue='\[\033[1;34m\]'
+    local colour_grey='\[\033[1;37m\]'
     local colour_clear='\[\033[0m\]'
 
     local branch=""
@@ -21,7 +22,7 @@ get_prompt () {
         branch='$(__git_ps1 "%s")'
     fi
 
-    echo "$colour_green\u@\h $colour_blue\w $colour_yellow$branch$colour_clear\n> "
+    echo "$colour_grey[\D{%F %T}] $colour_green\u@\h $colour_blue\w $colour_yellow$branch$colour_clear\n> "
 }
 
 export PS1="$(get_title)$(get_prompt)"
