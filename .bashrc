@@ -31,6 +31,15 @@ if ! shopt -oq posix; then
     fi
 fi
 
+# Misc
+########################################
+
+# Enable "**" pattern
+shopt -s globstar
+
+# Support more file types in less
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
 # Aliases
 ########################################
 
