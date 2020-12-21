@@ -5,8 +5,11 @@
 # PATH
 ########################################
 
+# Add composer binaries
+[ -d "$HOME/.composer/vendor/bin" ] && export PATH="$HOME/.composer/vendor/bin:$PATH"
+
 # Add user binaries to path
-[ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
+[ -d "$HOME/bin" ] && export PATH="$HOME/bin:$PATH"
 
 # Environment
 ########################################
