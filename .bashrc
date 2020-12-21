@@ -7,6 +7,11 @@
 #---------------------------------------
 [[ $- == *i* ]] || return 0
 
+# Colors
+########################################
+
+export CLICOLOR=1
+
 # History
 ########################################
 
@@ -15,7 +20,7 @@ export HISTSIZE=10000
 export HISTFILESIZE=$HISTSIZE
 
 shopt -s histappend # Append to .bash_history
-shopt -s cmdhist    # Squash multiline commands into one line in history 
+shopt -s cmdhist    # Squash multiline commands into one line in history
 shopt -s histverify # Paste command from history into shell instead of executing it
 
 # Completion
